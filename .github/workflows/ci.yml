@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test-and-build:
+  test-train-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +26,17 @@ jobs:
 
       - name: Run Unit Tests
         run: python -m pytest
+
+      - name: Train Model
+        run: |
+          cd ml
+          python train.py
+
+      - name: Upload Model Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: trained-model
+          path: ml/model.pkl
 
       - name: Build Stage 1 Docker Image
         run: docker build -t churn-devops .
