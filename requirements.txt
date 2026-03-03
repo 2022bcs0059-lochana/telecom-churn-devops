@@ -3,3 +3,7 @@ uvicorn
 pydantic
 pytest
 prometheus-client
+scikit-learn
+joblib
+pandas
+numpy
